@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0b0b">
+<meta name="description" content="FlowBoard is a lightweight, mobile-friendly task manager to organize tasks and track work completion. Tasks stay in your browser on this device.">
+<meta name="referrer" content="no-referrer">
+<!-- CSP hashes are generated for this file’s inline CSS and JavaScript. Update them if either block changes. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-8d55ZAVDTQ4ko9bwHiIs85qqErYBJR62fzW3CrOUs/c='; style-src 'sha256-dGZJvCJh/l38tayXg6x/EJw4gI2WrF9h6v4Whffa5a0='; img-src data:; connect-src 'none'; font-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>FlowBoard — Simple Task Manager</title>
+<style>
+:root{color-scheme:dark;--bg:#0b0b0b;--panel:#151515;--text:#f4f4ef;--muted:#aaa99f;--gold:#d4af37;--line:#333}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,Segoe UI,Arial,sans-serif}.wrap{width:min(1000px,92%);margin:auto}header,footer{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 4%;border-bottom:1px solid var(--line)}footer{border-top:1px solid var(--line);border-bottom:0;color:var(--muted);margin-top:36px}a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}.brand{font-weight:850;font-size:1.15rem;color:var(--text)}nav{display:flex;gap:16px;flex-wrap:wrap}nav a{padding:5px 0}.page{display:none;min-height:65vh;padding:38px 0}.page.active{display:block}.eyebrow{color:var(--gold);font-size:.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase}h1{font-size:clamp(2.1rem,6vw,4rem);line-height:1.1;letter-spacing:-1px;margin:12px 0}h2{line-height:1.25}p{color:var(--muted)}.btn{display:inline-block;padding:11px 17px;border:1px solid var(--gold);border-radius:9px;font-weight:750;margin:10px 8px 10px 0;background:transparent;color:var(--gold);font:inherit;cursor:pointer}.primary,button{background:var(--gold);color:#111}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:28px 0}.card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:20px;margin:16px 0}.card p{margin-bottom:0}label{display:block;font-weight:650}input,textarea,select{width:100%;background:#101010;color:var(--text);border:1px solid #454545;border-radius:8px;padding:11px;font:inherit;margin:5px 0 14px}button{cursor:pointer;border:0;border-radius:8px;padding:10px 15px;font:inherit;font-weight:800}.task{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:13px;margin:10px 0}.task p{margin:3px 0}.task small{color:var(--muted)}.task-actions{display:flex;align-items:center;gap:8px;min-width:170px}.task-actions select{margin:0;min-width:110px}.task-actions button{padding:9px 11px}.progress-wrap{margin:18px 0 24px;padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:12px}.progress-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.progress-track{height:12px;background:#333;border-radius:999px;overflow:hidden;margin-top:10px}.progress-fill{height:100%;width:0;background:var(--gold);border-radius:999px;transition:width .25s ease}.progress-note{font-size:.9rem;color:var(--muted);margin:6px 0 0}.muted{color:var(--muted)}:focus-visible{outline:2px solid var(--gold);outline-offset:3px}button:hover,.btn:hover{filter:brightness(1.08)}@media(max-width:700px){.grid{grid-template-columns:1fr}header{align-items:flex-start;flex-direction:column}.task{flex-direction:column}.task-actions{width:100%;min-width:0}.task-actions select{flex:1}.page{padding:26px 0}.card{padding:16px}}@media(max-width:420px){header,footer{padding:16px 4%}nav{gap:12px;font-size:.94rem}.task-actions{align-items:stretch}}
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="#home" data-page="home">◈ FlowBoard</a>
+  <nav aria-label="Main navigation">
+    <a href="#home" data-page="home">Home</a>
+    <a href="#dashboard" data-page="dashboard">Dashboard</a>
+    <a href="#about" data-page="about">About</a>
+    <a href="#privacy" data-page="privacy">Privacy Policy</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section id="home" class="page active">
+    <p class="eyebrow">A clearer way to work</p>
+    <h1>Make progress visible.</h1>
+    <p>Organize tasks, track what needs attention, and keep your work moving in one simple dashboard.</p>
+    <button class="btn primary" type="button" data-page="dashboard">Start using FlowBoard →</button>
+    <section class="grid">
+      <article class="card"><h2>Organize</h2><p>Create tasks and keep details together.</p></article>
+      <article class="card"><h2>Track</h2><p>See task statuses and mark work complete.</p></article>
+      <article class="card"><h2>Stay in control</h2><p>Your tasks stay in your browser on this device.</p></article>
+    </section>
+  </section>
+
+  <section id="dashboard" class="page">
+    <p class="eyebrow">Your workspace</p>
+    <h1>Task dashboard</h1>
+    <p>Tasks are saved in this browser on this device.</p>
+    <section class="card">
+      <form id="taskForm">
+        <label for="taskTitle">Task title</label><input id="taskTitle" name="taskTitle" maxlength="120" required autocomplete="off" placeholder="e.g. Finish assignment">
+        <label for="taskDetail">Description (optional)</label><textarea id="taskDetail" name="taskDetail" maxlength="500" rows="2" placeholder="Add a few details"></textarea>
+        <label for="taskStatus">Status</label><select id="taskStatus" name="taskStatus"><option>To do</option><option>In progress</option><option>Completed</option></select>
+        <button type="submit">Add task</button>
+      </form>
+    </section>
+    <section class="progress-wrap" aria-label="Work completion progress">
+      <div class="progress-head"><strong>Work completion</strong><strong id="progressPercent">0%</strong></div>
+      <div class="progress-track" role="progressbar" aria-label="Percentage of tasks completed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
+      <p class="progress-note" id="progressNote">Complete tasks to see your progress.</p>
+    </section>
+    <h2>Your tasks <span id="taskCount"></span></h2>
+    <div id="tasks"></div><p id="emptyTasks">No tasks yet. Add your first task above.</p>
+    <button id="clearTasks" type="button">Clear all tasks</button>
+  </section>
+
+  <section id="about" class="page">
+    <p class="eyebrow">About the project</p><h1>Simple tools for clearer work.</h1>
+    <p>FlowBoard is a lightweight task manager made to help with everyday planning.</p>
+    <section class="grid">
+      <article class="card"><h2>Organize</h2><p>Add tasks with optional descriptions.</p></article>
+      <article class="card"><h2>Track</h2><p>Set tasks to To do, In progress, or Completed.</p></article>
+      <article class="card"><h2>Keep it simple</h2><p>Use a responsive black-and-gold interface.</p></article>
+    </section>
+    <section class="card"><h2>Where is data saved?</h2><p>Tasks are stored in your browser's local storage on this device. They are not synced online. Clearing browser site data may delete them.</p><button class="btn primary" type="button" data-page="dashboard">Go to dashboard →</button></section>
+  </section>
+
+  <section id="privacy" class="page">
+    <p class="eyebrow">Your data matters</p><h1>Privacy Policy</h1><p>Last updated: October 20, 2026</p>
+    <section class="card"><strong>In short:</strong> This static demo stores tasks in your browser's local storage. It has no built-in account system, analytics, advertising, or server-side task database.</section>
+    <h2>Information stored on your device</h2><p>Task titles, descriptions, and statuses are stored in local storage so they can remain available in the same browser. They are not automatically synced between devices.</p>
+    <h2>Hosting providers</h2><p>This project does not send task details to a FlowBoard backend. A hosting provider, such as GitHub Pages, may process technical request information under its own policies.</p>
+    <h2>Cookies and tracking</h2><p>This project does not intentionally use tracking or advertising cookies and includes no analytics scripts. Local storage is used for dashboard functionality.</p>
+    <h2>Your choices</h2><p>You can clear this site's stored data in your browser settings. This may remove saved tasks. Do not store passwords, financial details, health information, or other sensitive information here.</p>
+    <h2>Changes and contact</h2><p>Update this policy if you add accounts, analytics, cloud storage, or third-party services. Add verified contact details before using the site commercially.</p>
+    <button class="btn primary" type="button" data-page="home">Back to home</button>
+  </section>
+</main>
+<footer><span>© 2026 FlowBoard</span><a href="#privacy" data-page="privacy">Privacy Policy</a></footer>
+
+<script>
+(() => {
+  const pages = ['home','dashboard','about','privacy'];
+  function showPage(name, updateHash=true) {
+    if (!pages.includes(name)) name='home';
+    document.querySelectorAll('.page').forEach(page => page.classList.toggle('active', page.id===name));
+    if (updateHash && location.hash !== '#'+name) history.pushState({page:name}, '', '#'+name);
+    window.scrollTo(0,0);
+    document.title = ({home:'FlowBoard — Home',dashboard:'Dashboard — FlowBoard',about:'About — FlowBoard',privacy:'Privacy Policy — FlowBoard'})[name];
+  }
+  document.querySelectorAll('[data-page]').forEach(el => el.addEventListener('click', e => {e.preventDefault();showPage(el.dataset.page)}));
+  window.addEventListener('popstate', () => showPage(location.hash.slice(1)||'home', false));
+  window.addEventListener('hashchange', () => showPage(location.hash.slice(1)||'home', false));
+  const KEY='flowboard-tasks-v1';
+  const MAX_TASKS=500, MAX_TITLE=120, MAX_DETAIL=500;
+  const allowedStatuses=new Set(['To do','In progress','Completed']);
+  const $=id=>document.getElementById(id);
+  // Treat browser storage as untrusted input: validate shape, types, lengths and status.
+  function validateTasks(value){
+    if(!Array.isArray(value)) return [];
+    return value.slice(0,MAX_TASKS).filter(t=>t && typeof t==='object' && !Array.isArray(t))
+      .map(t=>({
+        title:typeof t.title==='string' ? t.title.trim().slice(0,MAX_TITLE) : '',
+        detail:typeof t.detail==='string' ? t.detail.slice(0,MAX_DETAIL) : '',
+        status:allowedStatuses.has(t.status) ? t.status : 'To do'
+      }))
+      .filter(t=>t.title.length>0);
+  }
+  let tasks=[];
+  try { tasks=validateTasks(JSON.parse(localStorage.getItem(KEY)||'[]')); }
+  catch(e) { tasks=[]; }
+  function save(){
+    tasks=validateTasks(tasks);
+    try{localStorage.setItem(KEY,JSON.stringify(tasks));}
+    catch(e){alert('Could not save tasks. Your browser storage may be full or unavailable.');}
+    render();
+  }
+  function render(){
+    const taskList=$('tasks');
+    taskList.replaceChildren();
+    const fragment=document.createDocumentFragment();
+    $('taskCount').textContent='('+tasks.length+')'; $('emptyTasks').hidden=tasks.length>0;
+    const completed=tasks.filter(t=>t.status==='Completed').length;
+    const percent=tasks.length ? Math.round(completed/tasks.length*100) : 0;
+    $('progressPercent').textContent=percent+'%';
+    $('progressFill').style.width=percent+'%';
+    $('progressBar').setAttribute('aria-valuenow',String(percent));
+    $('progressNote').textContent=tasks.length ? completed+' of '+tasks.length+' tasks completed' : 'Add tasks, then mark them completed to track your progress.';
+    tasks.forEach((t,i)=>{
+      const row=document.createElement('article'); row.className='task';
+      const info=document.createElement('div'); const title=document.createElement('strong'); title.textContent=t.title;
+      const detail=document.createElement('p'); detail.textContent=t.detail||'';
+      const status=document.createElement('small'); status.textContent='Status: '+t.status; info.append(title,detail,status);
+      const actions=document.createElement('div'); actions.className='task-actions';
+      const select=document.createElement('select'); select.setAttribute('aria-label','Change task status');
+      ['To do','In progress','Completed'].forEach(s=>{const o=document.createElement('option');o.textContent=s;o.value=s;o.selected=s===t.status;select.append(o)});
+      select.addEventListener('change',()=>{tasks[i].status=select.value;save()});
+      const del=document.createElement('button');del.type='button';del.textContent='Delete';del.addEventListener('click',()=>{tasks.splice(i,1);save()});
+      actions.append(select,del);row.append(info,actions);fragment.append(row);
+    });
+    taskList.append(fragment);
+  }
+  $('taskForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    const title=$('taskTitle').value.trim().slice(0,MAX_TITLE);
+    const detail=$('taskDetail').value.trim().slice(0,MAX_DETAIL);
+    const status=$('taskStatus').value;
+    if(!title){$('taskTitle').focus();return;}
+    if(!allowedStatuses.has(status)){alert('Please choose a valid task status.');return;}
+    if(tasks.length>=MAX_TASKS){alert('You have reached the maximum of '+MAX_TASKS+' tasks. Delete some tasks before adding more.');return;}
+    tasks.unshift({title,detail,status});save();e.target.reset();$('taskTitle').focus();
+  });
+  $('clearTasks').addEventListener('click',()=>{if(tasks.length&&confirm('Delete all saved tasks?')){tasks=[];save();}});
+  showPage(location.hash.slice(1)||'home',false); render();
+})();
+</script>
+</body>
+</html>
